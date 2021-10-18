@@ -1,0 +1,13 @@
+{% extends "registration/base.html"%}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container py-5">
+    <h1>Login</h1>
+    <form method="POST">
+        {% csrf_token%}
+        {{emaillogin_form|crispy}}
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <p class="text-center">Don't have an account? <a href="registration/emailsignup.html">Create an account</a></p>
+</div>
