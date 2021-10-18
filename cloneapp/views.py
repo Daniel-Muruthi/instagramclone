@@ -49,3 +49,6 @@ def login(request):
             messages.error(request, "Invalid username or password")
     form = AuthenticationForm()
     return render(request=request, template_name="registration/emaillogin.html", context={"emaillogin_form":form})
+
+def  userhome(request):
+    return render(request, 'index.html')

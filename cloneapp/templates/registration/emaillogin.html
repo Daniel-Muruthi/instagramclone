@@ -4,14 +4,18 @@
 
 <div class="container">
     <div class="vh-100 d-flex align-items-center justify-content-center">
-        <div class="card p-4">
-            <h1>Login</h1>
-            <form method="POST">
-                {% csrf_token%}
-                {{emaillogin_form|crispy}}
-                <button class="btn btn-primary my-1" type="submit">Login</button>
-            </form>
-            <p class="">Don't have an account? <a href="registration/emailsignup.html">Create an account</a></p>
+        <div class="row">
+            <div card="col-sm-12">
+                <div class="card p-4">
+                    <h1>Login</h1>
+                    <form method="POST">
+                        {% csrf_token%}
+                        {{emaillogin_form|crispy}}
+                        <button class="btn btn-primary my-1" type="submit">Login</button>
+                    </form>
+                    <p class="">Don't have an account? <a href="registration/emailsignup.html">Create an account</a></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
