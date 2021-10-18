@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     url(r'^$', views.landing, name='landingpage'),
+    path("emailsignup/", views.signup, name='emailsignup')
 ]
 
 

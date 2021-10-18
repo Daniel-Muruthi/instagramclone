@@ -1,5 +1,6 @@
-{%extends "registration/base.html"%} {% load bootstrap3 %}
+{% extends "registration/base.html"%}
 {% block content %}
+{% load crispy_forms_tags %}
 <div class="container">
   <div class="row">
     <!-- Empty div -->
@@ -11,15 +12,20 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="text-center">Sign Up</h3>
+          <h3 class="text-center">Instagram</h3>
+          <div>
+            <p>
+              Sign up to see photos and videos from your friends.
+            </p>
+          </div>
         </div>
         <div class="panel-body">
 
-          <form  action="/accounts/register/" method="post">
+          <form  action="/accounts/emailsignup/" method="post">
             {% csrf_token %}
-            {% bootstrap_form form %}
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+            {{signup_form|crispy}}
+            <div class="form-group text-center" >
+              <input type="submit" class="btn btn-primary" value="Sign Up">
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
