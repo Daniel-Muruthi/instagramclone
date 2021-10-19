@@ -5,7 +5,7 @@
             <form class="navbar-form" name="search" role="search" action="/search">
               {% csrf_token %}
               <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search Category" name="searchcategory">
+                  <input type="text" class="form-control" placeholder="Search" name="searchcategory">
                   <div class="input-group-btn">
                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                   </div>
@@ -15,8 +15,8 @@
         <div class="navbar-expand d-inline" >
             <ul class="nav navbar-nav d-flex" >
                 <li class="mx-3 d-block"><a href="{%url 'landingpage'%}" style="text-decoration: none;">Home</a></li>
-                <li class="mx-3 d-block"><a href="" style="text-decoration: none;">About</a></li>
-                <li class="mx-3 d-block"><a href="" style="text-decoration: none;">Contacts</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'index'%}" style="text-decoration: none;">Feed</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'newpost'%}" class="btn btn-primary" style="text-decoration: none;">New Post</a></li>
             </ul>
         </div>
         <div class="navbar navbar-nav navbar-right d-inline">

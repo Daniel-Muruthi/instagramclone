@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Post, HashTag, Location
 
 def landing(request):
     if request.method == "POST":
@@ -51,4 +52,16 @@ def login(request):
     return render(request=request, template_name="registration/emaillogin.html", context={"emaillogin_form":form})
 
 def  userhome(request):
-    return render(request, 'index.html')
+    posts = Post.show_posts()
+    return render(request, 'index.html', {"posts":posts})
+
+def new_post(request):
+    posts = Post.show_posts()
+
+    if request.method == 'POST':
+       post=request.FILES.get('image') 
+       data=request.POST
+       post=Post.objects.create(image=data['image'], author=data['author'], postcaption=data['postcaption'], location=data['location'], hashtag=data['hashtag'], pub_date=data['pub_date'])
+       return redirect('landingpage')
+
+    return render(request, 'index.html', context={'posts':posts})
