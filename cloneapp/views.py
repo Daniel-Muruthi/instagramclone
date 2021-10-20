@@ -24,8 +24,8 @@ def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user=form.save()
-            login(request, user)
+            form.save()
+            # login(request, user)
             messages.success(request, "Registration successfull")
             return redirect('emaillogin')
         else:
@@ -44,14 +44,15 @@ def login(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("index")
+                return render(request, 'index.html')
             else:
                 messages.error(request, "Invalid username or password")
+                return render(request, 'registration/emailsignup.html')
 
         else:
             messages.error(request, "Invalid username or password")
     form = AuthenticationForm()
-    return render(request=request, template_name="registration/emaillogin.html", context={"emaillogin_form":form})
+    return render(request, "registration/emaillogin.html",{"emaillogin_form":form})
 
 
 @login_required(login_url='/accounts/emaillogin/')

@@ -16,6 +16,9 @@ import dotenv
 import dj_database_url
 from decouple import config,Csv
 import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,14 +42,18 @@ SECRET_KEY = 'django-insecure-d_##a7)2q^)4-c&3-bo4s57xppob@hy*7(rhw)m*^4b6ll!043
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-
+cloudinary.config(
+    cloud_name='muruthi',
+    api_key='594622678843644',
+    api_secret='Hjg1aB5KyqLxcKNI8r4Y-jSVy0U',
+    secure=True
+)
 
 # Application definition
 
 INSTALLED_APPS = [
-    'cloneapp',
     'bootstrap5',
-    # 'cloneapp.apps.CloneappConfig',
+    'cloneapp.apps.CloneappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

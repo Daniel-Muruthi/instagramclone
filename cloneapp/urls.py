@@ -10,6 +10,7 @@ urlpatterns=[
     path("emaillogin/", views.login, name='emaillogin'),
     path("index/", views.userhome, name='index'),
     path("new/", views.new_post, name='newpost'),
+    url(r'^logout/$', views.logout, {"home_page":'index/'})
 ]
 
 
