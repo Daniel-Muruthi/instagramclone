@@ -51,6 +51,8 @@ def login(request):
     form = AuthenticationForm()
     return render(request=request, template_name="registration/emaillogin.html", context={"emaillogin_form":form})
 
+
+
 def  userhome(request):
     posts = Post.show_posts()
     return render(request, 'index.html', {"posts":posts})
