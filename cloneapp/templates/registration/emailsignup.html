@@ -1,9 +1,5 @@
 {% extends "registration/base.html"%}
-{%block head%}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-{%endblock%}
+
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container">
@@ -18,7 +14,7 @@
         <div class="panel panel-default">
   
           <div class="panel-heading">
-            <h3 class="text-center" style="font-family: 'Satisfy', cursive; font-size:xx-large;">Instagram</h3>
+            <h1 class="text-center" style="font-family: 'Cookie', cursive; font-size:xx-large !important;">Instagram</h1>
             <div>
               <p class="text-center">
                 Sign up to see photos and videos from your friends.
@@ -35,9 +31,9 @@
               <div class="form-group input-group mb-2">
                 <div class="input-group-append"><span class="form-group input-group-text">User Email: </span></div>{{signup_form.email}}</div>
               <div class="form-group input-group mb-2">
-                <div class="input-group-append"><span class="form-group input-group-text">Password</span></div>{{signup_form.password1}}</div>
+                <div class="input-group-append"><span class="form-group input-group-text">Password :</span></div>{{signup_form.password1}}</div>
               <div class="form-group input-group mb-2">
-                <div class="input-group-append"><span class="form-group input-group-text">Re-Password</span></div>{{signup_form.password2}}</div>
+                <div class="input-group-append"><span class="form-group input-group-text">Re-Password:</span></div>{{signup_form.password2}}</div>
               <div class="form-group text-center my-1" >
                 <input type="submit" class="btn btn-primary" value="Sign Up">
               </div>
