@@ -28,9 +28,11 @@ def signup(request):
             login(request, user)
             messages.success(request, "Registration successfull")
             return redirect('emaillogin')
-        messages.error(request, "Unsuccessful registration. Invalid Information")
-    form = SignUpForm()
-    return render(request=request, template_name="registration/emailsignup.html", context={"signup_form":form})
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid Information")
+    else:
+        form = SignUpForm()
+        return render(request, "registration/emailsignup.html",{"signup_form":form})
 
 def login(request):
     if request.method == "POST":
@@ -42,7 +44,7 @@ def login(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("cloneapp:index.html")
+                return redirect("index")
             else:
                 messages.error(request, "Invalid username or password")
 

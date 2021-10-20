@@ -44,8 +44,9 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Application definition
 
 INSTALLED_APPS = [
+    'cloneapp',
     'bootstrap5',
-    'cloneapp.apps.CloneappConfig',
+    # 'cloneapp.apps.CloneappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
