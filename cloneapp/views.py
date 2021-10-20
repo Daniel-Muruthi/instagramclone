@@ -27,7 +27,7 @@ def signup(request):
             user=form.save()
             login(request, user)
             messages.success(request, "Registration successfull")
-            return redirect("cloneapp:index.html")
+            return redirect('emaillogin')
         messages.error(request, "Unsuccessful registration. Invalid Information")
     form = SignUpForm()
     return render(request=request, template_name="registration/emailsignup.html", context={"signup_form":form})
@@ -52,7 +52,7 @@ def login(request):
     return render(request=request, template_name="registration/emaillogin.html", context={"emaillogin_form":form})
 
 
-
+@login_required(login_url='/accounts/emaillogin/')
 def  userhome(request):
     posts = Post.show_posts()
     return render(request, 'index.html', {"posts":posts})

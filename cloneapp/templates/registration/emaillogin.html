@@ -1,4 +1,5 @@
 {% extends "registration/base.html"%}
+{%load bootstrap5%}
 {% block content %}
 {% load crispy_forms_tags %}
 
@@ -7,13 +8,13 @@
         <div class="row">
             <div card="col-sm-12">
                 <div class="card p-4">
-                    <h1>Login</h1>
-                    <form method="POST">
+                    <h1 class="text-center", style="font-family: 'Cookie', cursive; font-size:xx-large !important;">Instagram</h1>
+                    <form method="POST" action="">
                         {% csrf_token%}
-                        {{emaillogin_form|crispy}}
+                        {%bootstrap_form emaillogin_form%}
                         <button class="btn btn-primary my-1" type="submit">Login</button>
                     </form>
-                    <p class="">Don't have an account? <a href="registration/emailsignup.html">Create an account</a></p>
+                    <p class="">Don't have an account? <a href="{%url 'emailsignup'%}">Create an account</a></p>
                 </div>
             </div>
         </div>

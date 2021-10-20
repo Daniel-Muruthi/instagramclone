@@ -1,5 +1,5 @@
 {% extends "registration/base.html"%}
-
+{%load bootstrap5%}
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container">
@@ -23,17 +23,10 @@
           </div>
           <div class="panel-body">
   
-            <form  action="/accounts/emailsignup/" method="post">
+            <form  action="" method="post">
               {% csrf_token %}
+              {%bootstrap_form signup_form%}
               <!-- {{signup_form|crispy}} -->
-              <div class="form-group input-group mb-2">
-                <div class="input-group-append"><span class="form-group input-group-text">Username :</span></div>{{signup_form.username}}</div>
-              <div class="form-group input-group mb-2">
-                <div class="input-group-append"><span class="form-group input-group-text">User Email: </span></div>{{signup_form.email}}</div>
-              <div class="form-group input-group mb-2">
-                <div class="input-group-append"><span class="form-group input-group-text">Password :</span></div>{{signup_form.password1}}</div>
-              <div class="form-group input-group mb-2">
-                <div class="input-group-append"><span class="form-group input-group-text">Re-Password:</span></div>{{signup_form.password2}}</div>
               <div class="form-group text-center my-1" >
                 <input type="submit" class="btn btn-primary" value="Sign Up">
               </div>
@@ -46,7 +39,7 @@
         {{signup_form.errors}}
         </div>
         
-        <p class="text-center">Already have an account? <a href="registration/emailsignup.html">Sign into your account</a></p>
+        <p class="text-center">Already have an account? <a href="{%url 'emaillogin'%}">Sign into your account</a></p>
       </div>
     </div>
     <!-- empty div -->
