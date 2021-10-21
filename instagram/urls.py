@@ -20,7 +20,7 @@ from django.contrib.auth import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include('cloneapp.urls')),
+    path('', include('cloneapp.urls')),
     url(r'^accounts/', include('django_registration.backends.activation.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
