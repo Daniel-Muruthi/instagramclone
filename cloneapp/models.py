@@ -26,7 +26,7 @@ class Post(models.Model):
     hashtag = models.ManyToManyField(HashTag)
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
-    comments = models.TextField()
+    comments = models.TextField(blank=True, max_length=500)
 
 
     @classmethod
