@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.shortcuts import get_object_or_404,render,HttpResponseRedirect
 from cloudinary.models import CloudinaryField
+from tinymce.models import HTMLField
 
 
 class Location(models.Model):
@@ -30,7 +31,7 @@ class Comment(models.Model):
 class Post(models.Model):
     image = CloudinaryField('image')
     author = models.CharField(max_length = 60)
-    postcaption = models.TextField()
+    postcaption = HTMLField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     hashtag = models.ManyToManyField(HashTag)
     pub_date = models.DateTimeField(auto_now_add=True)

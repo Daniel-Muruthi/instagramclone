@@ -47,8 +47,8 @@ MODE=config("MODE", default="dev")
 SECRET_KEY = 'django-insecure-d_##a7)2q^)4-c&3-bo4s57xppob@hy*7(rhw)m*^4b6ll!043'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-
+# DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = os.environ.get('DEBUG', False)
 cloudinary.config(
     cloud_name='muruthi',
     api_key='594622678843644',
@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'tinymce',
+    'registration',
 ]
 
 MIDDLEWARE = [

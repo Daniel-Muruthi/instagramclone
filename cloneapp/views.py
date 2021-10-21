@@ -63,6 +63,8 @@ def  userhome(request):
     posts = Post.show_posts()
     return render(request, 'index.html', {"posts":posts})
 
+
+@login_required(login_url='/account/login/')
 def new_post(request):
     posts = Post.show_posts()
 
@@ -80,7 +82,7 @@ def profilepage(request):
 
     return render(request, "profilepage.html",{"posts":posts})
 
-@login_required(login_url='/newpost/')
+@login_required(login_url='/account/login/')
 def newpost(request):
     current_user=request.user
     userprofile = UserProfile.objects.get(username=current_user)
@@ -88,9 +90,8 @@ def newpost(request):
     if request.method == 'POST':
         form=UserPostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
             post.username = current_user
-
             post.save()
 
         return redirect('index')
