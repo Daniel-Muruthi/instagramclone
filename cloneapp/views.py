@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm, NewsLetterForm, CommentsForm, UserPostForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Post, HashTag, Location, UserProfile
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 def landing(request):
     if request.method == "POST":
@@ -28,14 +30,14 @@ def signup(request):
             # login(request, user)
             user= form.cleaned_data.get('username')
             messages.success(request, f"Registration successfull {{user}}")
-            return redirect('emaillogin')
+            return HttpResponseRedirect(reverse('index'))
         else:
             messages.error(request, "Unsuccessful registration. Invalid Information")
     else:
         form = SignUpForm()
         return render(request, "registration/registration_form.html",{"signup_form":form})
 
-def login(request):
+def userlogin(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -55,7 +57,7 @@ def login(request):
     form = AuthenticationForm()
     return render(request, "registration/login.html",{"emaillogin_form":form})
 
-def logout(request):
+def userlogout(request):
     logout(request)
     return redirect('landingpage')
 
