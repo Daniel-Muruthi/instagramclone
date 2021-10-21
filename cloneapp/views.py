@@ -54,6 +54,9 @@ def login(request):
     form = AuthenticationForm()
     return render(request, "registration/emaillogin.html",{"emaillogin_form":form})
 
+def logout(request):
+    logout(request)
+    return redirect('landingpage')
 
 @login_required(login_url='/accounts/emaillogin/')
 def  userhome(request):
@@ -70,3 +73,9 @@ def new_post(request):
        return redirect('landingpage')
 
     return render(request, 'index.html', context={'posts':posts})
+
+def profilepage(request):
+    current_user=request.user
+    posts = Post.show_posts()
+
+    return render(request, "profilepage.html",{"posts":posts})

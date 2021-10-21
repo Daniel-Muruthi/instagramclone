@@ -1,5 +1,5 @@
 from django.urls import path
-from django.conf.urls import url
+from django.conf.urls import include, url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,7 +10,8 @@ urlpatterns=[
     path("emaillogin/", views.login, name='emaillogin'),
     path("index/", views.userhome, name='index'),
     path("new/", views.new_post, name='newpost'),
-    url(r'^logout/$', views.logout, {"home_page":'index/'})
+    
+    
 ]
 
 

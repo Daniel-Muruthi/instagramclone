@@ -25,6 +25,8 @@ class Post(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     hashtag = models.ManyToManyField(HashTag)
     pub_date = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
+    comments = models.TextField()
 
 
     @classmethod

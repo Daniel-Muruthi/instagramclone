@@ -35,6 +35,13 @@ if os.path.isfile(dotenv_file):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+#email configurations
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 MODE=config("MODE", default="dev")
 SECRET_KEY = 'django-insecure-d_##a7)2q^)4-c&3-bo4s57xppob@hy*7(rhw)m*^4b6ll!043'
@@ -61,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
