@@ -10,6 +10,7 @@ urlpatterns=[
     path("emaillogin/", views.login, name='emaillogin'),
     path("index/", views.userhome, name='index'),
     path("new/", views.new_post, name='newpost'),
+    path("newpost/", views.newpost, name='newerpost')
     
     
 ]

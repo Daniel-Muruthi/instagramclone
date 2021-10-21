@@ -9,7 +9,7 @@
             <div card="col-sm-12">
                 <div class="card p-4">
                     <h1 class="text-center", style="font-family: 'Cookie', cursive; font-size:xx-large !important;">Instagram</h1>
-                    <form method="post" action="/accounts/login/">
+                    <form method="post" action="/index/">
                         {% csrf_token%}
                         {%bootstrap_form emaillogin_form%}
                         <button class="btn btn-primary my-1" type="submit">Login</button>

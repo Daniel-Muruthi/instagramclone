@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Comment, Post, UserProfile, Location, HashTag
 
 
 class SignUpForm(UserCreationForm):
@@ -31,7 +32,19 @@ class SignUpForm(UserCreationForm):
             )
         return password2
 #This will create the news letter
-class NewsLetterForm(forms.Form):
+class NewsLetterForm(forms.ModelForm):
     your_name = forms.CharField(label='First Name', max_length=30)
     email = forms.EmailField(label='Email')
+
+class UserPostForm(forms.ModelForm):
+    model=Post
+    exclude=['image', 'author', 'pub_dates', 'like']
+
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        exclude=['username', 'userpost']
+        widget = {
+            forms.TextInput(attrs={'placeholder': 'enter your comment'})
+        }
 

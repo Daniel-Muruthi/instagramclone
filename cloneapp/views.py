@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+from .forms import SignUpForm, NewsLetterForm, CommentsForm, UserPostForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Post, HashTag, Location
+from .models import Post, HashTag, Location, UserProfile
 
 def landing(request):
     if request.method == "POST":
@@ -79,3 +79,22 @@ def profilepage(request):
     posts = Post.show_posts()
 
     return render(request, "profilepage.html",{"posts":posts})
+
+@login_required(login_url='/newpost/')
+def newpost(request):
+    current_user=request.user
+    userprofile = UserProfile.objects.get(username=current_user)
+
+    if request.method == 'POST':
+        form=UserPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            post.username = current_user
+
+            post.save()
+
+        return redirect('index')
+    else:
+        form=UserPostForm()
+    return render(request, 'index.html', {"form": form})
+

@@ -20,7 +20,7 @@ class HashTag(models.Model):
         return self.hashtag
 
 class Comment(models.Model):
-    post = models.IntegerField
+    userpost = models.IntegerField
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
 
@@ -45,4 +45,12 @@ class Post(models.Model):
 
 
 class UserProfile(models.Model):
-    
+    title= models.CharField(max_length=255),
+    username = models.ForeignKey(User, on_delete=models.CASCADE),
+    email = models.CharField(max_length=255),
+    phonenumber = models.IntegerField(),
+    bio = models.CharField(max_length=255),
+    userpic = CloudinaryField('image')
+
+    def __str__(self):
+        return self.username
