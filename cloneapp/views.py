@@ -26,33 +26,34 @@ def signup(request):
         if form.is_valid():
             form.save()
             # login(request, user)
-            messages.success(request, "Registration successfull")
+            user= form.cleaned_data.get('username')
+            messages.success(request, f"Registration successfull {{user}}")
             return redirect('emaillogin')
         else:
             messages.error(request, "Unsuccessful registration. Invalid Information")
     else:
         form = SignUpForm()
-        return render(request, "registration/emailsignup.html",{"signup_form":form})
+        return render(request, "registration/registration_form.html",{"signup_form":form})
 
 def login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            username=form.cleaned_data.get('username')
-            password=form.cleaned_data.get('password')
+            username=request.POST.get('username')
+            password=request.POST.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return render(request, 'index.html')
+                return redirect('index')
             else:
                 messages.error(request, "Invalid username or password")
-                return render(request, 'registration/emailsignup.html')
+                return render(request, 'registration/registration_form.html')
 
         else:
             messages.error(request, "Invalid username or password")
     form = AuthenticationForm()
-    return render(request, "registration/emaillogin.html",{"emaillogin_form":form})
+    return render(request, "registration/login.html",{"emaillogin_form":form})
 
 def logout(request):
     logout(request)
@@ -60,7 +61,7 @@ def logout(request):
 
 @login_required(login_url='/accounts/emaillogin/')
 def  userhome(request):
-    posts = Post.show_posts()
+    posts = Post.show_posts().order_by('-pub_date')
     return render(request, 'index.html', {"posts":posts})
 
 

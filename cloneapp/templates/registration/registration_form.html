@@ -23,12 +23,12 @@
           </div>
           <div class="panel-body">
   
-            <form  action="/accounts/register/" method="post">
+            <form  action="" method="post">
               {% csrf_token %}
               {%bootstrap_form signup_form%}
               <!-- {{signup_form|crispy}} -->
               <div class="form-group text-center my-1" >
-                <input type="submit" class="btn btn-primary" value="Sign Up">
+                <input type="submit" class="btn btn-primary" value="SignUp">
               </div>
               <input type="hidden" name="next" value="{{next}}">
   

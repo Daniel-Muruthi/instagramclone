@@ -18,7 +18,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 </head>
-<body id="bg" style="background-image: url('{% static "images/bg.jpg" %}'); background-repeat:no-repeat; background-size:cover;">
+<body id="bg" style="background-image: url('{% static "images/bg2.jpg" %}'); background-repeat:no-repeat; background-size:cover;">
 <!-- <body> -->
     <div class="container">
         <div class="row col-sm-12">
@@ -82,12 +82,12 @@
                             </div>
                             <div class="panel-body">
                     
-                                <form  action="emaillogin/" method="POST">
+                                <form  action="" method="POST">
                                 {% csrf_token %}
                                 {%bootstrap_form signup_form%}
                                 <!-- {{signup_form|crispy}} -->
                                     <div class="form-group text-center my-1" >
-                                        <input type="submit" class="btn btn-primary" value="Sign Up">
+                                        <input type="submit" class="mb-3 btn btn-primary" style="width:100%" value="Sign Up">
                                     </div>
                     
                                     <input type="hidden" name="next" value="{{next}}">
@@ -95,8 +95,9 @@
                             </div>
                           {{signup_form.errors}}
                           </div>
-                          
-                          <p class="text-center">Already have an account? <a href="{%url 'emaillogin'%}">Sign into your account</a></p>
+                          <div class="card mt-2">
+                              <p class="text-center">Already have an account? <a href="{%url 'emaillogin'%}">Sign into your account</a></p>
+                          </div>
                         </div>
                       </div>
                       <!-- empty div -->
