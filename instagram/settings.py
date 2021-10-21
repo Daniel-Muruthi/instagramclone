@@ -47,7 +47,7 @@ MODE=config("MODE", default="dev")
 SECRET_KEY = 'django-insecure-d_##a7)2q^)4-c&3-bo4s57xppob@hy*7(rhw)m*^4b6ll!043'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 cloudinary.config(
     cloud_name='muruthi',
