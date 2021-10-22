@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from .views import SignUpForm
 
+
 urlpatterns=[
     url(r'^$', views.landing, name='landingpage'),
     # path("registration_form/", views.signup, name='emailsignup'),
@@ -14,8 +15,9 @@ urlpatterns=[
     path("index/", views.userhome, name='index'),
     path("new/", views.new_post, name='newpost'),
     path("new/newpost/", views.newpost, name='newerpost'),
-    url( r'^emaillogin/$',auth_views.LoginView.as_view(template_name="registration/login.html"), name="emaillogin"),
-    url( r'^emailsignup/$',views.SignupView.as_view(template_name="registration/registration_form.html"), name="emailsignup"),
+    url( r'^emaillogin/$',views.userlogin, name="emaillogin"),
+    url(r'^logout/$', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    url( r'^emailsignup/$',views.signup, name="emailsignup"),
     
     
 ]

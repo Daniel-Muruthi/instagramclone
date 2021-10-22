@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm, NewsLetterForm, CommentsForm, UserPostForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Post, HashTag, Location, UserProfile
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -23,27 +23,29 @@ def landing(request):
     return render(request, 'home.html', context={"signup_form":form})
 
 
-# def signup(request):
-#     if request.method == "POST":
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             # login(request, user)
-#             user= form.cleaned_data.get('username')
-#             messages.success(request, f"Registration successfull {{user}}")
-#             return HttpResponseRedirect(reverse('index'))
-#         else:
-#             messages.error(request, "Unsuccessful registration. Invalid Information")
-#     else:
-#         form = SignUpForm()
-#         return render(request, "registration/registration_form.html",{"signup_form":form})
+def signup(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        # form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # login(request, user)
+            user= form.cleaned_data.get('username')
+            messages.success(request, f"Registration successfull {{user}}")
+            return redirect('emaillogin')
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid Information")
+            return render(request, "registration/registration_form.html", {"signup_form":form})
+    else:
+        form = SignUpForm()
+        return render(request, "registration/registration_form.html",{"signup_form":form})
 
 def userlogin(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            username=request.POST.get('username')
-            password=request.POST.get('password')
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
@@ -104,15 +106,15 @@ def newpost(request):
     return render(request, 'index.html', {"form": form})
 
 
-class SignupView(FormView):
-    template_name = 'registration_form'
-    form = SignUpForm
-    loginback = reverse_lazy('users:login')
-    def validate(self, form):
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('emaillogin')
+# class SignupView(FormView):
+#     template_name = 'registration_form'
+#     form = SignUpForm
+#     loginback = reverse_lazy('users:login')
+#     def validate(self, form):
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             post.save()
+#             return redirect('emaillogin')
 
 
 # return HttpResponseRedirect(reverse('reviews:wine_detail', args=(wine.id,)))
