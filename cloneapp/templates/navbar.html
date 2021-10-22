@@ -1,6 +1,6 @@
 <div class="navbar navbar-default navbar-static-top" role="navigation" style="border:1px solid white; box-shadow:0px 0px 4px 1px grey">
     <div class="container">
-        <a class="navbar-brand navbar-logo" href="">Instagram</a>
+        <a class="navbar-brand navbar-logo" href="{%url 'landingpage'%}" style="font-family: 'Cookie', cursive; font-size:xx-large !important; text-decoration: none;">Instagram</a>
         <div class="d-inline mx-auto">
             <form class="navbar-form" name="search" role="search" action="/search">
               {% csrf_token %}
@@ -14,7 +14,7 @@
         </div>
         <div class="navbar-expand d-inline" >
             <ul class="nav navbar-nav d-flex" >
-                <li class="mx-3 d-block"><a href="{%url 'landingpage'%}" style="text-decoration: none;">Home</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'index'%}" style="text-decoration: none;">Home</a></li>
                 <li class="mx-3 d-block"><a href="{%url 'index'%}" style="text-decoration: none;">Feed</a></li>
                 <li class="mx-3 d-block"><a href="{%url 'newerpost'%}" class="btn btn-primary" style="text-decoration: none;">New Post</a></li>
             </ul>
