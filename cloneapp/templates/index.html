@@ -18,16 +18,14 @@
                 <div class="row" style="margin:0 !important;">
                     <div class="d-flex" style="flex-wrap:wrap !important; justify-content:space-around;">
                         {% for post in posts %}
-                        <div class="col-sm-9 col-md-9 col-lg- card my-2 mx-1" style="height:620px !important">
-                            <img src="{{post.image.url}}" alt="image" height="300px">
+                        <div class="col-sm-7 col-md-7 col-7- card my-2 mx-1" style="height:620px !important">
+                            <img src="{{post.image.url}}" alt="image" height="500px">
                             <h3 class="text-center text-primary"></h3>
                             <h4>{{post.postcaption|truncatechars:70}}</h4>
                             <p>Location: {{post.location}}</p>
-                            <p>Categories: {{post.hashtag.all|join:', '}}</p>
+                            <p>#{{post.hashtag.all|join:' # '}}</p>
                             <p>Created at: {{post.pub_date}}</p>
                             <div class="card-footer">
-                                <input class="form-control input-lg" type="text" value="{{post.image.url}}"
-                                id="{{image.id}}.url">
                                 <div class="d-flex my-1" style="justify-content: center;">
                                     <a href="/{{image.id}}/delete/" class="btn btn-danger ">Delete Image</a>
                                 </div>

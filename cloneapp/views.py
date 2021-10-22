@@ -31,7 +31,7 @@ def signup(request):
             form.save()
             # login(request, user)
             user= form.cleaned_data.get('username')
-            messages.success(request, f"Registration successfull {{user}}")
+            messages.success(request, f"Registration successfull {user}")
             return redirect('emaillogin')
         else:
             messages.error(request, "Unsuccessful registration. Invalid Information")
