@@ -6,6 +6,7 @@ from django.db.models.deletion import CASCADE
 from django.shortcuts import get_object_or_404,render,HttpResponseRedirect
 from cloudinary.models import CloudinaryField
 from tinymce.models import HTMLField
+from django.contrib import auth
 
 
 class Location(models.Model):
@@ -55,3 +56,10 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.username
+
+
+# class User(auth.models.User, auth.models.PermissionMixin):
+#     readonly_fields = ('id', 'pk')
+
+#     def __str__(self):
+#         return self.username

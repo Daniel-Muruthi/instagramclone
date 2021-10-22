@@ -20,18 +20,18 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from registration.backends.simple.views import RegistrationView
 
-class MyRegistrationView(RegistrationView):
-    def get_success_url(self, request, user):
-        return '/cloneapp/'
+# class MyRegistrationView(RegistrationView):
+#     def get_success_url(self, request, user):
+#         return '/cloneapp/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cloneapp.urls')),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    path('', include('registration.backends.simple.urls')),
     # url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^logout/$', auth_views.LogoutView.as_view(), {"next_page": '/'}),
-    url(r'^accounts/register/$', MyRegistrationView.as_view, name="register", ),
+    # url(r'^accounts/register/$', MyRegistrationView.as_view, name="register", ),
     url(r'^accounts/login/$', auth_views.LoginView.as_view(), name="login")
 
 
