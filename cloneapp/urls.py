@@ -16,7 +16,7 @@ urlpatterns=[
     path("new/", views.new_post, name='newpost'),
     path("new/newpost/", views.newpost, name='newerpost'),
     url( r'^emaillogin/$',views.userlogin, name="emaillogin"),
-    url(r'^logout/$', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    url(r'^logout/$', views.logout, name='logout'),
     url( r'^emailsignup/$',views.signup, name="emailsignup"),
     
     

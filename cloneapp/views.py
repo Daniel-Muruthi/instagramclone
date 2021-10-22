@@ -62,7 +62,7 @@ def userlogin(request):
 
 def userlogout(request):
     logout(request)
-    return redirect('landingpage')
+    return HttpResponseRedirect('/landingpage/')
 
 @login_required(login_url='/accounts/emaillogin/')
 def  userhome(request):
