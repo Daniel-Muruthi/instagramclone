@@ -59,6 +59,7 @@ cloudinary.config(
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'bootstrap5',
     'cloneapp.apps.CloneappConfig',
     'django.contrib.admin',

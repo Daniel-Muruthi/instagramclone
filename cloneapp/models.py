@@ -44,7 +44,10 @@ class Post(models.Model):
     def show_posts(cls):
         posts = cls.objects.all()
         return posts
+    
 
+    def get_absolute_url(self):
+        return reverse('cloneapp:findpost', kwargs={'pk': self.pk})
 
 class UserProfile(models.Model):
     title= models.CharField(max_length=255),

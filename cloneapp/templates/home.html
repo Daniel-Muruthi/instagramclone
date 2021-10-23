@@ -82,7 +82,7 @@
                             </div>
                             <div class="panel-body">
                     
-                              <form  action="{%url 'emailsignup' %}" method="post">
+                              <form  action="{%url 'cloneapp:emailsignup' %}" method="post">
                                 {% csrf_token %}
                                 {%bootstrap_form signup_form%}
                                 <!-- {{signup_form|crispy}} -->

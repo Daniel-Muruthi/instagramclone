@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav d-flex" >
                 <li class="mx-3 d-block"><a href="{%url 'cloneapp:index'%}" style="text-decoration: none;">Home</a></li>
                 <li class="mx-3 d-block"><a href="{%url 'cloneapp:index'%}" style="text-decoration: none;">Feed</a></li>
-                <li class="mx-3 d-block"><a href="{%url 'cloneapp:newerpost'%}" class="btn btn-primary" style="text-decoration: none;">New Post</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'cloneapp:newerpost' %}" class="btn btn-primary" style="text-decoration: none;">New Post</a></li>
             </ul>
         </div>
         <div class="navbar navbar-nav navbar-right d-inline">
@@ -25,7 +25,7 @@
                 <div class="nav-item dropdown mx-3" >
                     <a href=""  class="nav-link dropdown-toggle user-action" data-bs-toggle="dropdown">
                         <img src="" class="avatar" alt="Avatar">
-                        <h5 class="d-inline">{{ username }} </h5>
+                        <h5 class="d-inline">{{ user.username }} </h5>
                         <!-- <b class="caret"></b> -->
                     </a>
                     <div class="dropdown-menu" style="position:absolute !important;">

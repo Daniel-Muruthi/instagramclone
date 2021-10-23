@@ -8,7 +8,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Post, HashTag, Location, UserProfile
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, FormView,UpdateView
+from django.views.generic import DetailView, FormView,UpdateView, CreateView
+from django.views import generic
 
 def landing(request):
     if request.method == "POST":
@@ -126,7 +127,12 @@ class FindPostView(DetailView):
     model = Post
     template_name = 'findpost.html'
 
-class CreatePostView(DetailView):
+class CreatePostView(CreateView):
     model = Post
-    template_name = 'addpost.html'
+    template_name='post_form.html'
     fields =['image', 'postcaption', 'location', 'hashtag']
+    
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
