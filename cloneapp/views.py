@@ -125,3 +125,8 @@ def newpost(request):
 class FindPostView(DetailView):
     model = Post
     template_name = 'findpost.html'
+
+class CreatePostView(DetailView):
+    model = Post
+    template_name = 'addpost.html'
+    fields =['image', 'postcaption', 'location', 'hashtag']
