@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 {% block content %}
+
 <div class="container">
     <div class="vh-100 d-flex align-items-center justify-content-center">
         <form method="post">
@@ -10,9 +12,10 @@
                 </div>
                 <div>
                     <button class="btn btn-danger" type="submit">Confirm Delete</button>
-                    <a class="btn-success" href="{% url 'cloneapp:findpost' object.id%}">Cancel</a>
+                    <a class="btn mx-3 btn-success" href="{% url 'cloneapp:findpost' object.id%}">Cancel</a>
                 </div>
             </div>
         </form>
     </div>
 </div>
+{%endblock%}

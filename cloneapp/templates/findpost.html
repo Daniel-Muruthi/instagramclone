@@ -14,7 +14,7 @@
                         <p>Created at: {{object.pub_date}}</p>
                         <div class="card-footer">
                             <div class="d-flex my-1" style="justify-content: center;">
-                                <a href="/{{object.id}}/delete/" class="btn btn-danger ">Delete Image</a>
+                                <a href="{%url 'cloneapp:delete' post.id%}" class="btn btn-danger ">Delete Post</a>
                             </div>
                         </div>
                     </div>

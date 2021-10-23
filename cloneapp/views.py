@@ -1,3 +1,4 @@
+from django.db.models.base import Model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, FormView,UpdateView, CreateView, DeleteView
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from cloneapp import models
 
 def landing(request):
     if request.method == "POST":
@@ -160,18 +162,35 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 
 #     return render(request, 'index.html', {"post":posts})
 
-class DeleteImage(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
-    models=Post
-    template_name='delete.html'    
-    success_url=reverse_lazy('cloneapp:index')
-    success_message='Your Photo has been deleted successfully.'
+# class DeleteImage(LoginRequiredMixin,  DeleteView):
+#     models=Post
+#     template_name='delete.html'    
+#     success_url=reverse_lazy('cloneapp:index')
+#     success_message='Your Photo has been deleted successfully.'
+
+
+#     def get_queryset(self):
+#         qs = super(DeleteImage, self).get_queryset()
+#         return qs.filter(author=self.request.user)
+#     def test_func(self ):
+#         post=self.get_object()
+#         if self.request.user == post.author:
+#             return True
+#         return False
+
+class DeleteImage(DeleteView):
+    model = Post
+    template_name='delete.html'
+    success_url = reverse_lazy('cloneapp:index')
 
 
     def get_queryset(self):
-        qs = super(DeleteImage, self).get_queryset()
-        return qs.filter(author=self.request.user)
-    def test_func(self ):
-        post=self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+        
+        return Post.objects.all()
+
+    # def get_queryset(self):
+    #     return self.model.objects.filter(id = self.request.user.id)
+
+    # def delete(self,*args,**kwargs):
+    #     messages.success(self.request,'Post Deleted')
+    #     return super().delete(*args,**kwargs)

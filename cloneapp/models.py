@@ -12,11 +12,15 @@ from django.contrib import auth
 class Location(models.Model):
     location=models.CharField(max_length=30)
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.location
 
 class HashTag(models.Model):
     hashtag=models.CharField(max_length=30)
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.hashtag
@@ -25,6 +29,8 @@ class Comment(models.Model):
     userpost = models.IntegerField
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
+
+    objects = models.Manager()
 
     def savecomment(self):
         self.save()
@@ -38,6 +44,8 @@ class Post(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
     comments = models.TextField(blank=True, max_length=500)
+
+    objects = models.Manager()
 
 
     @classmethod
@@ -56,6 +64,8 @@ class UserProfile(models.Model):
     phonenumber = models.IntegerField(),
     bio = models.CharField(max_length=255),
     userpic = CloudinaryField('image')
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.username
