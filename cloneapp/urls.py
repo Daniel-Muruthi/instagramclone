@@ -1,5 +1,6 @@
 from django.urls import path
 from django.conf.urls import include, url
+from django.views.generic.edit import DeleteView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,7 +11,6 @@ from .views import SignUpForm, FindPostView, CreatePostView, DeleteImage, Update
 app_name = 'cloneapp'
 urlpatterns=[
     url(r'^$', views.landing, name='landingpage'),
-    url(r'^<int:pk>/delete/$', views.post_delete, name= 'delete'),
     path("index/", views.userhome, name='index'),
     path("new/", views.new_post, name='newpost'),
     path("post/new/", CreatePostView.as_view(), name='newerpost'),
@@ -19,7 +19,7 @@ urlpatterns=[
     url( r'^emailsignup/$',views.signup, name="emailsignup"),
     path('post/<int:pk>/', FindPostView.as_view(), name='findpost'),
     path('post/<int:pk>/update/', UpdatePostView.as_view(), name='updatepost'),
-    
+    path('post/<int:pk>/deletepost/', DeleteImage.as_view(), name='delete')
     
 ]
 

@@ -6,11 +6,11 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm, NewsLetterForm, CommentsForm, UserPostForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Post, HashTag, Location, UserProfile
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, FormView,UpdateView, CreateView, DeleteView
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 def landing(request):
     if request.method == "POST":
@@ -148,13 +148,30 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
         form.instance.author = str(self.request.user)
         return super().form_valid(form)
 
-def post_delete(request, id):
-    posts = Post.show_posts()
-    delimage= get_object_or_404(Post, pk=id).delete()
+    def test_func(self):
+        post=self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
-    return render(request, 'index.html', {"post":posts})
+# def post_delete(request, id):
+#     posts = Post.show_posts()
+#     delimage= get_object_or_404(Post, pk=id).delete()
 
-class DeleteImage(DeleteView):
+#     return render(request, 'index.html', {"post":posts})
+
+class DeleteImage(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
     models=Post
-    template_name='delete.html'
-    success_url=reverse_lazy('index')
+    template_name='delete.html'    
+    success_url=reverse_lazy('cloneapp:index')
+    success_message='Your Photo has been deleted successfully.'
+
+
+    def get_queryset(self):
+        qs = super(DeleteImage, self).get_queryset()
+        return qs.filter(author=self.request.user)
+    def test_func(self ):
+        post=self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

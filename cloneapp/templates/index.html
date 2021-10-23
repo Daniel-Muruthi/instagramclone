@@ -31,7 +31,7 @@
                             <div class="card-footer">
                                 <div class="d-flex my-1" style="justify-content: space-around;">
                                     <a href="{%url 'cloneapp:updatepost' post.id%}" class="btn btn-success ">Update Post</a>
-                                    <a href="post/{{post.id}}/update/" class="btn btn-danger ">Delete Post</a>
+                                    <a href="{%url 'cloneapp:delete' post.id%}" class="btn btn-danger ">Delete Post</a>
                                 </div>
                             </div>
                         </div>
