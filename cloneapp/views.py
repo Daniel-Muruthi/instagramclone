@@ -52,7 +52,7 @@ def userlogin(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect('index')
+                return redirect('cloneapp:index')
             else:
                 messages.error(request, "Invalid username or password")
                 return render(request, 'registration/registration_form.html')
