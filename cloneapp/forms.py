@@ -39,6 +39,7 @@ class NewsLetterForm(forms.ModelForm):
 class UserPostForm(forms.ModelForm):
     model=Post
     exclude=['image', 'author', 'pub_dates', 'like']
+    ordering = ['-date_posted']
 
 class CommentsForm(forms.ModelForm):
     class Meta:

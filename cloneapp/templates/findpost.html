@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content%}
+<div class="container-fluid">
+    <div class="row" >
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="row" style="margin:0 !important;">
+                <div class="d-flex" style="flex-wrap:wrap !important; justify-content:space-around;">
+                    <div class="col-sm-7 col-md-7 col-7- card my-3" style="height:fit-content !important">
+                        <img src="{{object.image.url}}" alt="image" height="500px">
+                        <h3 class="text-center text-primary"></h3>
+                        <h4>{{object.postcaption|striptags}}</h4>
+                        <p>Location: {{object.location}}</p>
+                        <p>#{{post.hashtag.all|join:' # '}}</p>
+                        <p>Created at: {{object.pub_date}}</p>
+                        <div class="card-footer">
+                            <div class="d-flex my-1" style="justify-content: center;">
+                                <a href="/{{object.id}}/delete/" class="btn btn-danger ">Delete Image</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,8 +1,8 @@
 <div class="navbar navbar-default navbar-static-top" role="navigation" style="border:1px solid white; box-shadow:0px 0px 4px 1px grey">
     <div class="container">
-        <a class="navbar-brand navbar-logo" href="{%url 'landingpage'%}" style="font-family: 'Cookie', cursive; font-size:xx-large !important; text-decoration: none;">Instagram</a>
+        <a class="navbar-brand navbar-logo" href="{%url 'cloneapp:landingpage'%}" style="font-family: 'Cookie', cursive; font-size:xx-large !important; text-decoration: none;">Instagram</a>
         <div class="d-inline mx-auto">
-            <form class="navbar-form" name="search" role="search" action="/search">
+            <form class="navbar-form" name="search" role="search" action="">
               {% csrf_token %}
               <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search" name="searchcategory">
@@ -12,11 +12,12 @@
               </div>
             </form>
         </div>
+        
         <div class="navbar-expand d-inline" >
             <ul class="nav navbar-nav d-flex" >
-                <li class="mx-3 d-block"><a href="{%url 'index'%}" style="text-decoration: none;">Home</a></li>
-                <li class="mx-3 d-block"><a href="{%url 'index'%}" style="text-decoration: none;">Feed</a></li>
-                <li class="mx-3 d-block"><a href="{%url 'newerpost'%}" class="btn btn-primary" style="text-decoration: none;">New Post</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'cloneapp:index'%}" style="text-decoration: none;">Home</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'cloneapp:index'%}" style="text-decoration: none;">Feed</a></li>
+                <li class="mx-3 d-block"><a href="{%url 'cloneapp:newerpost'%}" class="btn btn-primary" style="text-decoration: none;">New Post</a></li>
             </ul>
         </div>
         <div class="navbar navbar-nav navbar-right d-inline">
@@ -37,11 +38,22 @@
                             Messages
                         </a>
                         <div class="divider dropdown-divider"></div>
-                        <a href="{%url 'logout'%}" class="dropdown-item">
+                        <a href="{%url 'cloneapp:logout'%}" class="dropdown-item">
                             <i class="fa fa-sign-out"></i>
                             Logout
                         </a>
                     </div>
+                    <div class="dropdown-menu" style="position:absolute !important;">
+                        <a href="{%url 'cloneapp:emaillogin' %}" class="dropdown-item">
+                            <i class="fa fa-envelope"></i>
+                            Log In
+                        </a>
+                        <div class="divider dropdown-divider"></div>
+                        <a href="{%url 'cloneapp:emailsignup'%}" class="dropdown-item">
+                            <i class="fa fa-sign-out"></i>
+                            Sign Up
+                        </a>
+                    </div> 
                 </div>
             </div>
         </div>

@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from registration.backends.simple.views import RegistrationView
 from cloneapp import views
+from cloneapp.views import FindPostView 
 
 # class MyRegistrationView(RegistrationView):
 #     def get_success_url(self, request, user):
@@ -28,6 +29,7 @@ from cloneapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cloneapp.urls')),
+
     # path('', include('registration.backends.simple.urls')),
     # url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^tinymce/', include('tinymce.urls')),

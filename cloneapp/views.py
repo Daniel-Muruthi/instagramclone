@@ -23,6 +23,8 @@ def landing(request):
     return render(request, 'home.html', context={"signup_form":form})
 
 
+
+
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -118,3 +120,8 @@ def newpost(request):
 
 
 # return HttpResponseRedirect(reverse('reviews:wine_detail', args=(wine.id,)))
+
+
+class FindPostView(DetailView):
+    model = Post
+    template_name = 'findpost.html'
