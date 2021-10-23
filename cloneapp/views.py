@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -8,8 +8,9 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Post, HashTag, Location, UserProfile
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, FormView,UpdateView, CreateView
+from django.views.generic import DetailView, FormView,UpdateView, CreateView, DeleteView
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def landing(request):
     if request.method == "POST":
@@ -127,7 +128,7 @@ class FindPostView(DetailView):
     model = Post
     template_name = 'findpost.html'
 
-class CreatePostView(CreateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name='post_form.html'
     fields =['image', 'postcaption', 'location', 'hashtag']
@@ -136,3 +137,24 @@ class CreatePostView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class UpdatePostView(LoginRequiredMixin, UpdateView):
+    model = Post
+    template_name='post_form.html'
+    fields =['image', 'postcaption', 'location', 'hashtag']
+    
+
+    def form_valid(self, form):
+        form.instance.author = str(self.request.user)
+        return super().form_valid(form)
+
+def post_delete(request, id):
+    posts = Post.show_posts()
+    delimage= get_object_or_404(Post, pk=id).delete()
+
+    return render(request, 'index.html', {"post":posts})
+
+class DeleteImage(DeleteView):
+    models=Post
+    template_name='delete.html'
+    success_url=reverse_lazy('index')

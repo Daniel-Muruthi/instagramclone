@@ -29,8 +29,9 @@
                             <p>Created at: {{post.pub_date}}</p>
                             <p>Post By: {{post.author}}</p>
                             <div class="card-footer">
-                                <div class="d-flex my-1" style="justify-content: center;">
-                                    <a href="/{{image.id}}/delete/" class="btn btn-danger ">Delete Image</a>
+                                <div class="d-flex my-1" style="justify-content: space-around;">
+                                    <a href="{%url 'cloneapp:updatepost' post.id%}" class="btn btn-success ">Update Post</a>
+                                    <a href="post/{{post.id}}/update/" class="btn btn-danger ">Delete Post</a>
                                 </div>
                             </div>
                         </div>
